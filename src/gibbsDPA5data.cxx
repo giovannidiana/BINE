@@ -53,7 +53,7 @@ int main(int argc, char* argv[]){
     int RNGSEED=atoi(argv[5]);
     int end_code=-1;
     bool verb=false;
-    bool contd=(strcmp(argv[11],"1")==0);
+    bool contd=(strcmp(argv[10],"1")==0);
     int MAXP=100;
 
 

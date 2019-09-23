@@ -41,6 +41,10 @@ where
 
 
 ## Test run
+Generate testing data:
+`./bin/generate_data 400 1000 4 1 0.04 0.7 0.3 testing`
+
+analyze data
 
 `./bin/gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0`
 
