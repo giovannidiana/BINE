@@ -15,7 +15,7 @@ where
 1. `TRIM`: number of MCMC steps between recorded samples
 1. `ASSEMBLIES`: initial number of assemblies
 1. `SEED`: random seed
-1. `BINARY_file`: input file in matrix format *neurons*x*times* where row *i* represents the binary activity of neuron *i*.
+1. `BINARY_file`: input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
 1. `THRESH2`: minimum neuronal activity (row sums)
 1. `THRESH`: minimum number of synchronously active neurons
 1. `folder`: output folder - being created if not already existing 
