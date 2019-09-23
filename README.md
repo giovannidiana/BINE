@@ -6,6 +6,19 @@ This repository contains a C++ implementation of the Bayesian inference method f
 ## Installation
 From command-line run *make*
 ## How to run
-`./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <BINSIZE> <THRESH> <THRESH2> <folder> <continue>`
+`./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>`
+
+where
+
+1. `NITER`: number of iterations
+1. `BURN_IN`: number of initial MCMC steps excluded
+1. `TRIM`: number of MCMC steps between recorded samples
+1. `ASSEMBLIES`: initial number of assemblies
+1. `SEED`: random seed
+1. `BINARY_file`: input file in matrix format *neurons*$\times$*times* where row $i$ represents the binary activity of neuron $i$.
+1. `THRESH2`: minimum neuronal activity (row sums)
+1. `THRESH`: minimum number of synchronously active neurons
+1. `folder`: output folder - being created if not already existing 
+1. `continue`: uses data from previous run when set equal to 1 otherwise should be set to 0
 
 
