@@ -7,7 +7,7 @@ This repository contains a C++ implementation of the Bayesian inference method f
 From command-line run `make`
 ## Run
 ### Data analysis
-`./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>`
+`./bin/gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>`
 
 where
 
@@ -25,7 +25,7 @@ where
 ### Generate testing data
 Testing data generated from the assembly model can be simulated by the command
 
-`./generate_data <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>`
+`./bin/generate_data <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>`
 
 where 
 
@@ -42,5 +42,5 @@ where
 
 ## Test run
 
-`./gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0`
+`./bin/gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0`
 
