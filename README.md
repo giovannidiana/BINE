@@ -40,7 +40,7 @@ where
 1. `lastIsFree`: optional parameter. `lastIsFree=1` sets equal synchrony and asynchrony for the last assembly, meaning that the last assembly is made by 'free' neurons.
 
 
-## Example
+## Test run
 
-`./gibbsDPA5data 1000 100 1 
+`./gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0
 
