@@ -6,6 +6,6 @@ This repository contains a C++ implementation of the Bayesian inference method f
 ## Installation
 From command-line run *make*
 ## How to run
-./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <BINSIZE> <THRESH> <THRESH2> <folder> <continue>
+`./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <BINSIZE> <THRESH> <THRESH2> <folder> <continue>`
 
 
