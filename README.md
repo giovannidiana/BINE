@@ -45,7 +45,7 @@ Generate testing data of 400 neurons and 1000 time frames organized into 4 assem
 
 `./bin/generate_data 400 1000 4 1 0.04 0.7 0.3 testing`
 
-where \lambda was
+where $\lambda$ was
 
 analyze data
 
