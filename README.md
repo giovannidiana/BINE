@@ -4,7 +4,7 @@ This repository contains a C++ implementation of the Bayesian inference method f
 * [GNU Scientific Libraries](https://www.gnu.org/software/gsl/)
 * [armadillo](http://arma.sourceforge.net/)
 ## Installation
-From command-line run *make*
+From command-line run `make`
 ## How to run
 `./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>`
 
@@ -20,5 +20,8 @@ where
 1. `THRESH`: minimum number of synchronously active neurons
 1. `folder`: output folder - being created if not already existing 
 1. `continue`: uses data from previous run when set equal to 1 otherwise should be set to 0
+
+## Example
+
 
 

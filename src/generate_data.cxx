@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
     if(argc<9){
         cout<<"Generate surrogate population activity"<<endl
             <<"usage:"<<endl
-            <<"gibbs <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>"<<endl;
+            <<"./generate_data <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>"<<endl;
         return 0;
     }
 

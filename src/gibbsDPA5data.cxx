@@ -22,17 +22,17 @@ using namespace std;
 
 int main(int argc, char* argv[]){
 
-    if(argc<12){
+    if(argc<11){
         cerr<<"Bayesian Inference of Neuronal Assemblies"<<endl
 		    <<"G. Diana, T. Sainsbury, M. Mayer"<<endl
 			<<"bioRxiv 452557; doi: https://doi.org/10.1101/452557"<<endl 
             <<"usage:"<<endl
-            <<"./gibbs_data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <BINSIZE> <THRESH> <THRESH2> <folder> <continue>"<<endl;
+            <<"./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>"<<endl;
         return 1;
     }
 
     // Create output folder
-    string proc_folder(argv[11]);
+    string proc_folder(argv[9]);
     struct stat sb;
     if (stat(proc_folder.c_str(), &sb) != 0){
         const int dir_err = mkdir(proc_folder.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
@@ -66,9 +66,8 @@ int main(int argc, char* argv[]){
     gsl_rng *r = gsl_rng_alloc (gsl_rng_mt19937);
     gsl_rng_set(r,RNGSEED);
 
-    int BINSIZE=atoi(argv[7]);
-    int THRESH = atoi(argv[8]);
-	int THRESH2= atoi(argv[9]);
+    int THRESH = atoi(argv[7]);
+	int THRESH2= atoi(argv[8]);
 
 //  Restrict to synchronous activity matrix s(N,M)
     filter_binary2(s_raw,s,cell_selected,THRESH,THRESH2);
