@@ -2,7 +2,7 @@
 This repository contains a C++ implementation of the Bayesian inference method for detecting neuronal assemblies developed in [G. Diana, T. Sainsbury and M. Meyer, bioRxiv 452557](https://doi.org/10.1101/452557) (Algorithm 2).
 ## Dependencies
 * [GNU Scientific Libraries](https://www.gnu.org/software/gsl/)
-* [armadillo](http://arma.sourceforge.net/) (>7.200)
+* [armadillo](http://arma.sourceforge.net/) (version >7.200)
 ## Installation
 From command-line run `make`
 ## Run
