@@ -9,7 +9,7 @@ This repository contains a C++ implementation of the Bayesian inference method f
 * [armadillo](http://arma.sourceforge.net/) (version >7.200)
 
 ### Installation
-- Create local folder `.obj`
+- Create local folders `.obj` and `bin`
 - run `make`
 
 ## Run
