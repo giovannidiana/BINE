@@ -7,22 +7,20 @@ SOURCESXX := $(wildcard $(SRCDIR)/*.cxx)
 SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 EXECUTABLES := $(SOURCESXX:$(SRCDIR)/%.cxx=$(BINDIR)/%)
-OPENCV = `pkg-config --libs opencv`
 
 ifeq ($(UNAME), Darwin)
    LIBS = -L/opt/local/lib -L/usr/lib -lgsl -lblas -I/opt/local/include 
-   FRAMEW = -framework OpenGL
 else
-   LIBS	=  -L/usr/lib -lgsl -lblas -l armadillo $(OPENCV) -fopenmp -lglut -lGL 
-   INCS = -I /usr/local/include -I/usr/include  
+   LIBS	=  -L/usr/lib -lgsl -lblas -l armadillo  
+   INCS = -I /usr/local/include -I/usr/include -I/opt/local/include 
 endif
 
 all: $(EXECUTABLES)
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp 
-	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS) $(FRAMEW) $(INCS) 
+	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS) $(INCS) 
 $(EXECUTABLES): $(BINDIR)/% : $(SRCDIR)/%.cxx $(OBJECTS) 
-	$(CC) -o $@ $< $(OBJECTS) $(LIBS) $(FRAMEW) $(INCS) 
+	$(CC) -o $@ $< $(OBJECTS) $(LIBS) $(INCS) 
 
 .PHONY: all clear
 

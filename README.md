@@ -1,11 +1,19 @@
-# Bayesian Inference of Neuronal Assemblies
-This repository contains a C++ implementation of the Bayesian inference method for detecting neuronal assemblies developed in [G. Diana, T. Sainsbury and M. Meyer, bioRxiv 452557](https://doi.org/10.1101/452557) (Algorithm 2).
-## Dependencies
+# BINE: Bayesian Inference of Neuronal Ensembles
+
+### Description
+
+This repository contains a C++ implementation of the Bayesian inference method for detecting neuronal ensembles developed in [G. Diana, T. Sainsbury and M. Meyer, bioRxiv 452557](https://doi.org/10.1101/452557) (Algorithm 2). The main code `gibbsDPA5data` requires as input a text file containing the binary matrix of neuronal activity where each row contains the binary trace of a given recorded neuron.  
+
+### Dependencies
 * [GNU Scientific Libraries](https://www.gnu.org/software/gsl/)
 * [armadillo](http://arma.sourceforge.net/) (version >7.200)
-## Installation
-From command-line run `make`
+
+### Installation
+- Create local folder `.obj`
+- run `make`
+
 ## Run
+
 ### Data analysis
 `./bin/gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>`
 
