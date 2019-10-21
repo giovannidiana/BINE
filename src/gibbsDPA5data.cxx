@@ -1,73 +1,143 @@
-// copied from gibbs4.cxx
-// Implemented scheme of algorithm7 in Neal2000
-//
-
 #include<iostream>
 #include<cstdio>
 #define ARMA_NO_DEBUG
 #include<armadillo>
 #include "../include/routines.h"
-#include "../include/crypt.h"
 #include "../include/indexed_array.h"
 #include "../include/ReadLine.h"
 #include<fstream>
 #include<gsl/gsl_randist.h>
 #include<gsl/gsl_sf.h>
 #include<cmath>
-#include<omp.h>
 #include<sys/stat.h>
 #include<ctime>
+#include <getopt.h>
 
 using namespace std;
 
 int main(int argc, char* argv[]){
 
-    if(argc<11){
-        cerr<<"Bayesian Inference of Neuronal Assemblies"<<endl
-		    <<"G. Diana, T. Sainsbury, M. Mayer"<<endl
-			<<"bioRxiv 452557; doi: https://doi.org/10.1101/452557"<<endl 
-            <<"usage:"<<endl
-            <<"./gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>"<<endl;
-        return 1;
-    }
-
-    // Create output folder
-    string proc_folder(argv[9]);
-    struct stat sb;
-    if (stat(proc_folder.c_str(), &sb) != 0){
-        const int dir_err = mkdir(proc_folder.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-        if (-1 == dir_err){
-            printf("Error creating directory!");
-            exit(1);
-        }
-    }
-
-    int NITER=atoi(argv[1]);
-    int BURN_IN=atoi(argv[2]);
-    int TRIM=atoi(argv[3]);
-    int N;
-    int M;
-    int P=atoi(argv[4]); // initial number of assemblies
-    int i,j,k;
-
-    int RNGSEED=atoi(argv[5]);
-    int end_code=-1;
-    bool verb=false;
-    bool contd=(strcmp(argv[10],"1")==0);
-    int MAXP=100;
-
+	int c;
 
     arma::imat s_raw; // binary activity s_{ik}
+	string proc_folder;
+    int NITER;
+    int BURN_IN;
+    int TRIM=0;
+    int N;
+    int M;
+    int P; // initial number of assemblies
+    int i,j,k;
+    int THRESH = 0;
+	int THRESH2= 0;
+
+    int RNGSEED=0;
+    bool verb=false;
+    bool contd=false;
+    int MAXP=100;
+	int options_required[]={1,1,0,1,0,1,0,0,0,0,0,0};
+	int options_provided[]={0,0,0,0,0,0,0,0,0,0,0,0};
+
+    static struct option long_options[] = {
+		      {"folder",  required_argument, NULL,  'f' },
+			  {"niter",  required_argument, NULL,  'i' },
+			  {"trim",  required_argument, NULL,  't' },
+			  {"assemblies", required_argument, NULL,  'a' },
+			  {"seed",  required_argument, NULL,  's' },
+			  {"file",  required_argument, NULL,  'b' },
+			  {"min_neur", required_argument,  NULL,  '1' },
+			  {"min_act", required_argument,  NULL,  '2' },
+			  {"continue", no_argument, NULL,  'c' },
+			  {"burn_in", required_argument, NULL, 'u'},
+			  {"verbose", no_argument,NULL,'v'},
+			  {NULL,         0,                NULL,  0 }
+	};
+
+	while(true){
+		// index along long_options 
+		int option_index = 0;
+		
+		c = getopt_long(argc, argv, "", long_options, &option_index);
+
+		options_provided[option_index]=1;
+
+		switch(c) {
+			case 'f':
+			// Create output folder
+			proc_folder.assign(optarg);
+			struct stat sb;
+			if (stat(proc_folder.c_str(), &sb) != 0){
+				const int dir_err = mkdir(proc_folder.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+				if (-1 == dir_err){
+					printf("Error creating directory!");
+					exit(1);
+				}
+			}
+			break;
+
+			case 'b':
+			s_raw.load(optarg);
+			break;
+
+			case 'i':
+			NITER=atoi(optarg);
+			break;
+
+			case 's':
+			RNGSEED=atoi(optarg);
+			break;
+
+			case 'a':
+			P=atoi(optarg);
+			break;
+
+			case 'u':
+			BURN_IN=atoi(optarg);
+			break;
+
+			case 't':
+			TRIM==atoi(optarg);
+			break;
+
+			case 'c':
+			contd=(strcmp(optarg,"1")==0);
+			break;
+
+			case '1':
+			THRESH=atoi(optarg);
+			break;
+
+			case '2':
+			THRESH2=atoi(optarg);
+			break;
+			
+			case 'v':
+			verb=true;
+			break;
+
+			default:
+			cerr<<"Bayesian Inference of Neuronal Assemblies"<<endl
+			    <<"G. Diana, T. Sainsbury, M. Mayer"<<endl
+				<<"bioRxiv 452557; doi: https://doi.org/10.1101/452557"<<endl 
+				<<"usage:"<<endl
+				<<argv[0]<<endl;
+			return 1;
+		}
+    }
+
+	// check all required options are there
+	for(i=0;i<12;i++){
+		if(options_required[i]==1 && options_provided[i]==0){
+			cerr<<"! missing "<<long_options[i].name<<endl;
+			return 1;
+		}
+	}
+
     arma::imat s;
     arma::uvec cell_selected;
 
-    s_raw.load(argv[6]);
-
     gsl_rng *r = gsl_rng_alloc (gsl_rng_mt19937);
     gsl_rng_set(r,RNGSEED);
-
-    int THRESH = atoi(argv[7]);
-	int THRESH2= atoi(argv[8]);
 
 //  Restrict to synchronous activity matrix s(N,M)
     filter_binary2(s_raw,s,cell_selected,THRESH,THRESH2);
