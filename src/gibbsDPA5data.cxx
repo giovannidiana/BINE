@@ -21,12 +21,12 @@ int main(int argc, char* argv[]){
 
     arma::imat s_raw; // binary activity s_{ik}
 	string proc_folder;
-    int NITER;
-    int BURN_IN;
-    int TRIM=0;
+    int NITER=1000;
+    int BURN_IN=0;
+    int TRIM=1;
     int N;
     int M;
-    int P; // initial number of assemblies
+    int P=10; // initial number of assemblies
     int i,j,k;
     int THRESH = 0;
 	int THRESH2= 0;
@@ -56,19 +56,18 @@ int main(int argc, char* argv[]){
 	while(true){
 		// index along long_options 
 		int option_index = 0;
-		char* short_option = "fitasb12cuv";
 		
-		c = getopt_long(argc, argv, "f:i:t:a:s:b:1:2:cu:v", long_options, &option_index);
+		c = getopt_long(argc, argv, "", long_options, &option_index);
 
 		options_provided[option_index]=1;
 		
 		if(c==-1) break;
 		
 		// print parameters
-		    cout<<"option_index = "<<option_index<<endl;
-		    cout<<"c = "<<short_option[option_index]<<endl;
-			cout<<long_options[option_index].name<<endl;
-			if(optarg) cout<<"     "<<optarg<<endl;
+		//    cout<<"option_index = "<<option_index<<endl;
+		//    cout<<"c = "<<short_option[option_index]<<endl;
+		//	cout<<long_options[option_index].name<<endl;
+		//	if(optarg) cout<<"     "<<optarg<<endl;
 
 		switch(c) {
 			case 'f':
@@ -109,7 +108,7 @@ int main(int argc, char* argv[]){
 			break;
 
 			case 'c':
-			contd=(strcmp(optarg,"1")==0);
+			contd=true;
 			break;
 
 			case '1':
@@ -142,13 +141,14 @@ int main(int argc, char* argv[]){
 		}
 	}
 
-    cout<<"P = "<<P<<endl;
-	cout<<"NITER = "<<NITER<<endl;
-	cout<<"TRIM = "<<TRIM<<endl;
-	cout<<"RNGSEED = "<<RNGSEED<<endl;
-	cout<<"THRESH = "<<THRESH<<endl;
-	cout<<"THRESH2 = "<<THRESH2<<endl;
-
+	if(verb){
+		cout<<"P = "<<P<<endl;
+		cout<<"NITER = "<<NITER<<endl;
+		cout<<"TRIM = "<<TRIM<<endl;
+		cout<<"RNGSEED = "<<RNGSEED<<endl;
+		cout<<"THRESH = "<<THRESH<<endl;
+		cout<<"THRESH2 = "<<THRESH2<<endl;
+	}
 	
     arma::imat s;
     arma::uvec cell_selected;
@@ -287,6 +287,7 @@ int main(int argc, char* argv[]){
             mu=0;
         } else mu++;
     } while(mu<group_sizes.size());
+
 
     while(sample<NITER){
 

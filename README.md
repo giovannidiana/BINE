@@ -23,43 +23,43 @@ gibbsDPA5data [OPTIONS]
 
 ### Options
 
-**-i, --niter**
+**--niter**
 
 > number of iterations
 
-**-t, --trim**
+**--trim**
 
-> number of MCMC steps between recorded samples
+> number of MCMC steps between recorded samples. Default 1. 
 
-**-u, --burn_in**
+**--burn_in**
 
 > number of initial MCMC steps excluded
 
-**-a, --assemblies**
+**--assemblies**
 
 > initial number of assemblies
 
-**-s, --seed**
+**--seed**
 
 > random seed
 
-**-b, --file**
+**--file**
 
 > input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
 
-**-1, --min_neur**
+**--min_neur**
 
 > minimum number of synchronously active neurons
 
-**-2, --min_act**
+**--min_act**
 
 > minimum neuronal activity (row sums)
 
-**-f, --folder**
+**--folder**
 
 > output folder - being created if not already existing 
 
-**-c, --continue**
+**--continue**
 
 > uses data from previous run stored in `folder`
 
