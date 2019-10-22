@@ -56,10 +56,19 @@ int main(int argc, char* argv[]){
 	while(true){
 		// index along long_options 
 		int option_index = 0;
+		char* short_option = "fitasb12cuv";
 		
-		c = getopt_long(argc, argv, "", long_options, &option_index);
+		c = getopt_long(argc, argv, "f:i:t:a:s:b:1:2:cu:v", long_options, &option_index);
 
 		options_provided[option_index]=1;
+		
+		if(c==-1) break;
+		
+		// print parameters
+		    cout<<"option_index = "<<option_index<<endl;
+		    cout<<"c = "<<short_option[option_index]<<endl;
+			cout<<long_options[option_index].name<<endl;
+			if(optarg) cout<<"     "<<optarg<<endl;
 
 		switch(c) {
 			case 'f':
@@ -80,23 +89,23 @@ int main(int argc, char* argv[]){
 			break;
 
 			case 'i':
-			NITER=atoi(optarg);
+			NITER=stoi(optarg);
 			break;
 
 			case 's':
-			RNGSEED=atoi(optarg);
+			RNGSEED=stoi(optarg);
 			break;
 
 			case 'a':
-			P=atoi(optarg);
+			P=stoi(optarg);
 			break;
 
 			case 'u':
-			BURN_IN=atoi(optarg);
+			BURN_IN=stoi(optarg);
 			break;
 
 			case 't':
-			TRIM==atoi(optarg);
+			TRIM==stoi(optarg);
 			break;
 
 			case 'c':
@@ -104,11 +113,11 @@ int main(int argc, char* argv[]){
 			break;
 
 			case '1':
-			THRESH=atoi(optarg);
+			THRESH=stoi(optarg);
 			break;
 
 			case '2':
-			THRESH2=atoi(optarg);
+			THRESH2=stoi(optarg);
 			break;
 			
 			case 'v':
@@ -133,6 +142,14 @@ int main(int argc, char* argv[]){
 		}
 	}
 
+    cout<<"P = "<<P<<endl;
+	cout<<"NITER = "<<NITER<<endl;
+	cout<<"TRIM = "<<TRIM<<endl;
+	cout<<"RNGSEED = "<<RNGSEED<<endl;
+	cout<<"THRESH = "<<THRESH<<endl;
+	cout<<"THRESH2 = "<<THRESH2<<endl;
+
+	
     arma::imat s;
     arma::uvec cell_selected;
 

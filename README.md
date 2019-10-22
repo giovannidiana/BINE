@@ -95,6 +95,6 @@ where assembly activity, synchrony and asynchrony were set to 30%, 70% and 4% re
 To analyze this dataset run the command
 
 ```
-./bin/gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0
+./bin/gibbsDPA5data --niter=1000 --assemblies=100 --file=testing/binary_matrix.dat --folder=testing
 ```
 
