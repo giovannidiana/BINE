@@ -53,7 +53,7 @@ gibbsDPA5data [OPTIONS]
 **-c, --continue**
 : uses data from previous run stored in `folder`
 
-### Generate testing data
+## Generate testing data
 Testing data generated from the assembly model can be simulated by the command
 
 `./bin/generate_data <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>`
