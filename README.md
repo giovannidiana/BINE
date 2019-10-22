@@ -56,7 +56,9 @@ gibbsDPA5data [OPTIONS]
 ## Generate testing data
 Testing data generated from the assembly model can be simulated by the command
 
-`./bin/generate_data <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>`
+```
+./bin/generate_data <NCELLS> <TIMES> <ASSEMBLIES> <SEED> <LAMBDA0> <LAMBDA1> <ACTIVITY> <outfile> <lastIsFree>
+```
 
 where 
 
