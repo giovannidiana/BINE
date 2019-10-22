@@ -24,7 +24,7 @@ gibbsDPA5data [OPTIONS]
 ### Options
 
 **-i, --niter**
-: number of iterations
+:    number of iterations
 
 **-t, --trim**
 : number of MCMC steps between recorded samples
