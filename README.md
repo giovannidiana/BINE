@@ -24,34 +24,34 @@ gibbsDPA5data [OPTIONS]
 ### Options
 
 **-i, --niter**
-: number of iterations
+> number of iterations
 
 **-t, --trim**
-: number of MCMC steps between recorded samples
+> number of MCMC steps between recorded samples
 
 **-u, --burn_in**
-: number of initial MCMC steps excluded
+> number of initial MCMC steps excluded
 
 **-a, --assemblies**
-: initial number of assemblies
+> initial number of assemblies
 
 **-s, --seed**
-: random seed
+> random seed
 
 **-b, --file**
-: input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
+> input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
 
 **-1, --min_neur**
-: minimum number of synchronously active neurons
+> minimum number of synchronously active neurons
 
 **-2, --min_act**
-: minimum neuronal activity (row sums)
+> minimum neuronal activity (row sums)
 
 **-f, --folder**
-: output folder - being created if not already existing 
+> output folder - being created if not already existing 
 
 **-c, --continue**
-: uses data from previous run stored in `folder`
+> uses data from previous run stored in `folder`
 
 ## Generate testing data
 Testing data generated from the assembly model can be simulated by the command
