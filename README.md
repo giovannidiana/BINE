@@ -24,10 +24,6 @@ gibbsDPA5data [OPTIONS]
 ### Options
 
 **-i, --niter**
-<<<<<<< HEAD
-=======
-
->>>>>>> d8534ca89d009366a0668660dabbebed9af043b6
 > number of iterations
 
 **-t, --trim**
