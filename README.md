@@ -76,12 +76,16 @@ where
 ## Test run
 Generate testing data of 400 neurons and 1000 time frames organized into 4 assemblies.
 
- `./bin/generate_data 400 1000 4 1 0.04 0.7 0.3 testing`
+```
+./bin/generate_data 400 1000 4 1 0.04 0.7 0.3 testing
+```
 
 where assembly activity, synchrony and asynchrony were set to 30%, 70% and 4% respectively.
 
 To analyze this dataset run the command
 
-`./bin/gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0`
+```
+./bin/gibbsDPA5data 1000 100 1 50 1 testing/binary_matrix.dat 0 0 testing 0
+```
 
 
