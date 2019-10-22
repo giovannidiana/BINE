@@ -11,24 +11,47 @@ This repository contains a C++ implementation of the Bayesian inference method f
 ### Installation
 - Create local folders `.obj` and `bin`
 - run `make`
+All binary files will be installed in `bin`.
 
-## Run
+## Data analysis
+The main program for data analysis is `gibbsDPA5data`
 
-### Data analysis
-`./bin/gibbsDPA5data <NITER> <BURN_IN> <TRIM> <ASSEMBLIES> <SEED> <BINARY_FILE> <THRESH> <THRESH2> <folder> <continue>`
+### Synopsis
+``` 
+gibbsDPA5data [OPTIONS]
+```
 
-where
+### Options
 
-1. `NITER`: number of iterations
-1. `BURN_IN`: number of initial MCMC steps excluded
-1. `TRIM`: number of MCMC steps between recorded samples
-1. `ASSEMBLIES`: initial number of assemblies
-1. `SEED`: random seed
-1. `BINARY_file`: input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
-1. `THRESH2`: minimum neuronal activity (row sums)
-1. `THRESH`: minimum number of synchronously active neurons
-1. `folder`: output folder - being created if not already existing 
-1. `continue`: uses data from previous run when set equal to 1 otherwise should be set to 0
+**-i, --niter**
+: number of iterations
+
+**-t, --trim**
+: number of MCMC steps between recorded samples
+
+**-u, --burn_in**
+: number of initial MCMC steps excluded
+
+**-a, --assemblies**
+: initial number of assemblies
+
+**-s, --seed**
+: random seed
+
+**-b, --file**
+: input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
+
+**-1, --min_neur**
+: minimum number of synchronously active neurons
+
+**-2, --min_act**
+: minimum neuronal activity (row sums)
+
+**-f, --folder**
+: output folder - being created if not already existing 
+
+**-c, --continue**
+: uses data from previous run stored in `folder`
 
 ### Generate testing data
 Testing data generated from the assembly model can be simulated by the command
