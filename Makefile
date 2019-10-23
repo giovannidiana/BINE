@@ -3,6 +3,7 @@ UNAME = $(shell uname)
 BINDIR = bin
 OBJDIR = .obj
 SRCDIR = src
+DIRS = $(BINDIR) $(OBJDIR)
 SOURCESXX := $(wildcard $(SRCDIR)/*.cxx)
 SOURCES  := $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
@@ -15,14 +16,19 @@ else
    INCS = -I /usr/local/include -I/usr/include -I/opt/local/include 
 endif
 
-all: $(EXECUTABLES)
+all: $(DIRS) $(EXECUTABLES) 
+
+directories : $(DIRS)
+
+$(DIRS):
+	mkdir -p $(DIRS)
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.cpp 
 	$(CC) $(CFLAGS) -c $< -o $@ $(LIBS) $(INCS) 
 $(EXECUTABLES): $(BINDIR)/% : $(SRCDIR)/%.cxx $(OBJECTS) 
 	$(CC) -o $@ $< $(OBJECTS) $(LIBS) $(INCS) 
 
-.PHONY: all clear
+.PHONY: all clean directories
 
 clean:
 	rm $(EXECUTABLES) 
