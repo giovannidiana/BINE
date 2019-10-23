@@ -35,8 +35,8 @@ int main(int argc, char* argv[]){
     bool verb=false;
     bool contd=false;
     int MAXP=100;
-	int options_required[]={1,1,0,1,0,1,0,0,0,0,0,0};
-	int options_provided[]={0,0,0,0,0,0,0,0,0,0,0,0};
+	int options_required[]={1,1,0,1,0,1,0,0,0,0,0,0,0};
+	int options_provided[]={0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     static struct option long_options[] = {
 		      {"folder",  required_argument, NULL,  'f' },
@@ -50,6 +50,7 @@ int main(int argc, char* argv[]){
 			  {"continue", no_argument, NULL,  'c' },
 			  {"burn_in", required_argument, NULL, 'u'},
 			  {"verbose", no_argument,NULL,'v'},
+			  {"recorded_assemblies", required_argument,NULL,'r'},
 			  {NULL,         0,                NULL,  0 }
 	};
 
@@ -121,6 +122,10 @@ int main(int argc, char* argv[]){
 			
 			case 'v':
 			verb=true;
+			break;
+
+			case 'r':
+			MAXP=stoi(optarg);
 			break;
 
 			default:
