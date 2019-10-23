@@ -21,11 +21,24 @@ The main program for data analysis is `gibbsDPA5data`
 gibbsDPA5data [OPTIONS]
 ```
 
-### Options
+### Required input
+**--file [FILE]**
+
+> input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
+
+**--folder [FOLDER]**
+
+> output folder - being created if not already existing 
 
 **--niter [ITERATIONS]**
 
 > number of iterations of the Markov Chain
+
+**--assemblies [VALUE]**
+
+> initial number of assemblies
+
+### Optional input
 
 **--trim [VALUE]**
 
@@ -35,17 +48,9 @@ gibbsDPA5data [OPTIONS]
 
 > number of initial MCMC steps excluded
 
-**--assemblies [VALUE]**
-
-> initial number of assemblies
-
 **--seed [VALUE]**
 
 > random seed
-
-**--file [FILE]**
-
-> input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
 
 **--min_neur [VALUE]**
 
@@ -54,10 +59,6 @@ gibbsDPA5data [OPTIONS]
 **--min_act [VALUE]**
 
 > minimum neuronal activity (row sums). Default 0.
-
-**--folder [FOLDER]**
-
-> output folder - being created if not already existing 
 
 **--recorded_assemblies [VALUE]**
 
