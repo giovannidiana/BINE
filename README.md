@@ -16,7 +16,7 @@ The main program for data analysis is `gibbsDPA5data`
 
 ### Synopsis
 ``` 
-gibbsDPA5data [OPTIONS]
+gibbsDPA5data --file=<FILE> --folder=<FOLDER> --niter=<VALUE> --assemblies=<VALUE> [OPTIONS] ...
 ```
 
 ### Required input
