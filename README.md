@@ -23,45 +23,53 @@ gibbsDPA5data [OPTIONS]
 
 ### Options
 
-**--niter**
+**--niter [ITERATIONS]**
 
-> number of iterations
+> number of iterations of the Markov Chain
 
-**--trim**
+**--trim [VALUE]**
 
 > number of MCMC steps between recorded samples. Default 1. 
 
-**--burn_in**
+**--burn_in [VALUE]**
 
 > number of initial MCMC steps excluded
 
-**--assemblies**
+**--assemblies [VALUE]**
 
 > initial number of assemblies
 
-**--seed**
+**--seed [VALUE]**
 
 > random seed
 
-**--file**
+**--file [FILE]**
 
 > input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
 
-**--min_neur**
+**--min_neur [VALUE]**
 
-> minimum number of synchronously active neurons
+> minimum number of synchronously active neurons. Default 0.
 
-**--min_act**
+**--min_act [VALUE]**
 
-> minimum neuronal activity (row sums)
+> minimum neuronal activity (row sums). Default 0.
 
-**--folder**
+**--folder [FOLDER]**
 
 > output folder - being created if not already existing 
+
+**--recorded_assemblies [VALUE]**
+
+> number of assemblies for which properties (activity, synchrony and asynchrony) are written in corresponding output files. Default 100.
 
 **--continue**
 
 > uses data from previous run stored in `folder`
+
+**--verbose**
+
+> show details of the Markov Chain.
 
 ## Generate testing data
 Testing data generated from the assembly model can be simulated by the command
@@ -98,3 +106,16 @@ To analyze this dataset run the command
 ./bin/gibbsDPA5data --niter=1000 --assemblies=100 --file=testing/binary_matrix.dat --folder=testing
 ```
 
+## Results
+Posterior samples of latent variables and model parameters are stored in dedicated files created in the folder specified in the input. By default, Ensemble properties such as activity, synchrony and asynchrony are written in output files for the first 100 ensembles. This number can be changed by specifying the option `--recorded_assemblies` in the input. Here is a list of files generated:
+
+* **membership_traj.dat**: posterior samples of all neuronal membership by row. 
+* **pmu.dat**: posterior samples of activity levels for all ensembles by row.
+* **lambda0.dat**: posterior samples of asynchrony levels for all ensembles by row.
+* **lambda1.dat**: posterior samples of synchrony levels for all ensembles by row.
+* **F.dat**: likelihood for all MCMC samples. This can be used to monitor the stability of the Markov Chain and establish convergence criteria.
+* **n.dat**: group sizes of all ensembles by row.
+* **omega_traj.dat**: ensemble activity matrix. By default, for each posterior sample, the binary activity of the first 100 ensembles is written as a matrix 100xM where M is the number of synchronous time frames considered. The number of rows can be changed by specifying the option `--recorded_assemblies` in the input.
+* **P.dat**: posterior samples of the number of assemblies. 
+* **selection.dat**: list of neurons included in the analysis according to the thresholds on activity and number of active neuron per synchronous event.
+* **txsweep.dat**: fraction of neurons changing membership across the MCMC.
