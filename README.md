@@ -9,9 +9,7 @@ This repository contains a C++ implementation of the Bayesian inference method f
 * [armadillo](http://arma.sourceforge.net/) (version >7.200)
 
 ### Installation
-- Create local folders `.obj` and `bin`
-- run `make`
-All binary files will be installed in `bin`.
+Run `make` from command line. The makefile will create the folder `bin` for the binary files and `.obj` for objects.
 
 ## Data analysis
 The main program for data analysis is `gibbsDPA5data`
