@@ -2,11 +2,15 @@
 
 ### Description
 
-This repository contains a C++ implementation of the Bayesian inference method for detecting neuronal ensembles developed in [G. Diana, T. Sainsbury and M. Meyer, bioRxiv 452557](https://doi.org/10.1101/452557) (Algorithm 2). The main code `gibbsDPA5data` requires as input a text file containing the binary matrix of neuronal activity where each row contains the binary trace of a given recorded neuron.  
+This repository contains a `C++` implementation of the Bayesian inference method for detecting neuronal ensembles developed by [G. Diana, T. Sainsbury and M. Meyer, PLOS Computational Biology 15(10): e1007481](https://doi.org/10.1371/journal.pcbi.1007481) (Algorithm 2). The main code `gibbsDPA5data` requires as input a text file containing the binary matrix of neuronal activity where each row contains the binary trace of a given recorded neuron. 
+
+We are constantly improving our software to help users to analyse their data using our method. Please feel free to contact us (`g.diana.mail@gmail.com`) for any question or feedback. 
 
 ### Dependencies
 * [GNU Scientific Libraries](https://www.gnu.org/software/gsl/)
 * [armadillo](http://arma.sourceforge.net/) (version >7.200)
+
+The input parameters are parsed through the `getopt` library. Please make sure that your system supports it.
 
 ### Installation
 Run `make` from command line. The makefile will create the folder `bin` for the binary files and `.obj` for objects.
@@ -118,3 +122,7 @@ Posterior samples of latent variables and model parameters are stored in dedicat
 * **P.dat**: posterior samples of the number of assemblies. 
 * **selection.dat**: list of neurons included in the analysis according to the thresholds on activity and number of active neuron per synchronous event.
 * **txsweep.dat**: fraction of neurons changing membership across the MCMC.
+
+### References
+
+1. [Diana G, Sainsbury TTJ, Meyer MP (2019) Bayesian inference of neuronal assemblies. PLOS Computational Biology 15(10): e1007481.](https://doi.org/10.1371/journal.pcbi.1007481)
