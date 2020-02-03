@@ -2,66 +2,77 @@
 
 ### Description
 
-This repository contains a C++ implementation of the Bayesian inference method for detecting neuronal ensembles developed in [G. Diana, T. Sainsbury and M. Meyer, bioRxiv 452557](https://doi.org/10.1101/452557) (Algorithm 2). The main code `gibbsDPA5data` requires as input a text file containing the binary matrix of neuronal activity where each row contains the binary trace of a given recorded neuron.  
+This repository contains a `C++` implementation of the Bayesian inference method for detecting neuronal ensembles developed by [G. Diana, T. Sainsbury and M. Meyer, PLOS Computational Biology 15(10): e1007481](https://doi.org/10.1371/journal.pcbi.1007481) (Algorithm 2). The main code `gibbsDPA5data` requires as input a text file containing the binary matrix of neuronal activity where each row contains the binary trace of a given recorded neuron. 
+
+We are constantly improving our software to help users to analyse their data using our method. Please feel free to contact us (`g.diana.mail@gmail.com`) for any question or feedback. 
 
 ### Dependencies
 * [GNU Scientific Libraries](https://www.gnu.org/software/gsl/)
 * [armadillo](http://arma.sourceforge.net/) (version >7.200)
 
+The input parameters are parsed through the `getopt` library. Please make sure that your system supports it.
+
 ### Installation
-- Create local folders `.obj` and `bin`
-- run `make`
-All binary files will be installed in `bin`.
+Run `make` from command line. The makefile will create the folder `bin` for the binary files and `.obj` for objects.
 
 ## Data analysis
 The main program for data analysis is `gibbsDPA5data`
 
 ### Synopsis
 ``` 
-gibbsDPA5data [OPTIONS]
+gibbsDPA5data --file=<FILE> --folder=<FOLDER> --niter=<VALUE> --assemblies=<VALUE> [OPTIONS] ...
 ```
 
-### Options
-
-**--niter**
-
-> number of iterations
-
-**--trim**
-
-> number of MCMC steps between recorded samples. Default 1. 
-
-**--burn_in**
-
-> number of initial MCMC steps excluded
-
-**--assemblies**
-
-> initial number of assemblies
-
-**--seed**
-
-> random seed
-
-**--file**
+### Required input
+**--file [FILE]**
 
 > input file in matrix format [neurons]x[times] where row *i* represents the binary activity of neuron *i*.
 
-**--min_neur**
-
-> minimum number of synchronously active neurons
-
-**--min_act**
-
-> minimum neuronal activity (row sums)
-
-**--folder**
+**--folder [FOLDER]**
 
 > output folder - being created if not already existing 
+
+**--niter [ITERATIONS]**
+
+> number of iterations of the Markov Chain
+
+**--assemblies [VALUE]**
+
+> initial number of assemblies
+
+### Optional input
+
+**--trim [VALUE]**
+
+> number of MCMC steps between recorded samples. Default 1. 
+
+**--burn_in [VALUE]**
+
+> number of initial MCMC steps excluded
+
+**--seed [VALUE]**
+
+> random seed
+
+**--min_neur [VALUE]**
+
+> minimum number of synchronously active neurons. Default 0.
+
+**--min_act [VALUE]**
+
+> minimum neuronal activity (row sums). Default 0.
+
+**--recorded_assemblies [VALUE]**
+
+> number of assemblies for which properties (activity, synchrony and asynchrony) are written in corresponding output files. Default 100.
 
 **--continue**
 
 > uses data from previous run stored in `folder`
+
+**--verbose**
+
+> show details of the Markov Chain.
 
 ## Generate testing data
 Testing data generated from the assembly model can be simulated by the command
@@ -98,3 +109,20 @@ To analyze this dataset run the command
 ./bin/gibbsDPA5data --niter=1000 --assemblies=100 --file=testing/binary_matrix.dat --folder=testing
 ```
 
+## Results
+Posterior samples of latent variables and model parameters are stored in dedicated files created in the folder specified in the input. By default, Ensemble properties such as activity, synchrony and asynchrony are written in output files for the first 100 ensembles. This number can be changed by specifying the option `--recorded_assemblies` in the input. Here is a list of files generated:
+
+* **membership_traj.dat**: posterior samples of all neuronal membership by row. 
+* **pmu.dat**: posterior samples of activity levels for all ensembles by row.
+* **lambda0.dat**: posterior samples of asynchrony levels for all ensembles by row.
+* **lambda1.dat**: posterior samples of synchrony levels for all ensembles by row.
+* **F.dat**: likelihood for all MCMC samples. This can be used to monitor the stability of the Markov Chain and establish convergence criteria.
+* **n.dat**: group sizes of all ensembles by row.
+* **omega_traj.dat**: ensemble activity matrix. By default, for each posterior sample, the binary activity of the first 100 ensembles is written as a matrix 100xM where M is the number of synchronous time frames considered. The number of rows can be changed by specifying the option `--recorded_assemblies` in the input.
+* **P.dat**: posterior samples of the number of assemblies. 
+* **selection.dat**: list of neurons included in the analysis according to the thresholds on activity and number of active neuron per synchronous event.
+* **txsweep.dat**: fraction of neurons changing membership across the MCMC.
+
+### References
+
+1. [Diana G, Sainsbury TTJ, Meyer MP (2019) Bayesian inference of neuronal assemblies. PLOS Computational Biology 15(10): e1007481.](https://doi.org/10.1371/journal.pcbi.1007481)

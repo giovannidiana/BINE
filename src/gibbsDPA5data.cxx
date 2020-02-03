@@ -35,8 +35,8 @@ int main(int argc, char* argv[]){
     bool verb=false;
     bool contd=false;
     int MAXP=100;
-	int options_required[]={1,1,0,1,0,1,0,0,0,0,0,0};
-	int options_provided[]={0,0,0,0,0,0,0,0,0,0,0,0};
+	int options_required[]={1,1,0,1,0,1,0,0,0,0,0,0,0};
+	int options_provided[]={0,0,0,0,0,0,0,0,0,0,0,0,0};
 
     static struct option long_options[] = {
 		      {"folder",  required_argument, NULL,  'f' },
@@ -50,6 +50,7 @@ int main(int argc, char* argv[]){
 			  {"continue", no_argument, NULL,  'c' },
 			  {"burn_in", required_argument, NULL, 'u'},
 			  {"verbose", no_argument,NULL,'v'},
+			  {"recorded_assemblies", required_argument,NULL,'r'},
 			  {NULL,         0,                NULL,  0 }
 	};
 
@@ -123,12 +124,42 @@ int main(int argc, char* argv[]){
 			verb=true;
 			break;
 
+			case 'r':
+			MAXP=stoi(optarg);
+			break;
+
 			default:
-			cerr<<"Bayesian Inference of Neuronal Assemblies"<<endl
+			cerr<<"\n\e[1mBayesian Inference of Neuronal Assemblies"<<endl
 			    <<"G. Diana, T. Sainsbury, M. Mayer"<<endl
-				<<"bioRxiv 452557; doi: https://doi.org/10.1101/452557"<<endl 
+				<<"bioRxiv 452557; doi: https://doi.org/10.1101/452557\e[0m"<<endl 
+				<<endl<<endl
 				<<"usage:"<<endl
-				<<argv[0]<<endl;
+				<<argv[0]<<" \e[33m --file=<FILE> --folder=<FOLDER> --niter=<VALUE> --assemblies=<VALUE> \e[0m"<<endl<<endl
+				<<"\e[33;1m--file=[FILE]\e[0m"<<endl
+				<<"    input file in matrix format [neurons]x[times] where row i represents the  binary  activity of neuron i."<<endl<<endl
+				<<"\e[33;1m--folder=[FOLDER]\e[0m"<<endl
+                <<"    output folder - being created if not already existing"<<endl<<endl
+				<<"\e[33;1m--niter=[ITERATIONS]\e[0m"<<endl
+                <<"    Set the number of iteration of the Markov Chain."<<endl<<endl
+				<<"\e[33;1m--assemblies=[VALUE]\e[0m"<<endl
+				<<"    initial number of assemblies."<<endl<<endl
+				<<"\e[1m--trim=[VALUE]\e[0m"<<endl
+                <<"    number of MCMC steps between recorded samples. Default 1."<<endl<<endl
+			    <<"\e[1m--burn_in=[VALUE]\e[0m"<<endl
+				<<"    number of initial MCMC steps excluded"<<endl<<endl
+				<<"\e[1m--seed=[VALUE]\e[0m"<<endl
+				<<"    random seed."<<endl<<endl
+				<<"\e[1m--min_neur=[VALUE]\e[0m"<<endl
+                <<"    minimum number of synchronously active neurons. Default 0."<<endl<<endl
+				<<"\e[1m--min_act=[VALUE]\e[0m"<<endl
+                <<"    minimum neuronal activity (row sums). Default 0."<<endl<<endl
+				<<"\e[1m--recorded_assemblies=[VALUE]\e[0m"<<endl
+				<<"    number of assemblies for which properties (activity, synchrony and asynchrony) are written in corresponding output files. Default 100."<<endl<<endl
+                <<"\e[1m--continue\e[0m"<<endl
+				<<"    uses data from previous run stored in FOLDER"<<endl<<endl
+				<<"\e[1m--verbose\e[0m"<<endl
+                <<"    show details of the Markov Chain."<<endl;
+
 			return 1;
 		}
     }

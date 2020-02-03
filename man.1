@@ -1,0 +1,50 @@
+.TH gibbsDPA5data 
+.SH NAME 
+BINE \- Bayesian Inference of Neuronal Ensembles
+.SH SYNOPSIS
+.B gibbsDPA5data 
+[\fB\-\-file\fR \fIFILE\fR]
+[\fB\-\-niter\fR \fIITERATIONS\fR]...
+
+.SH DESCRIPTION
+
+Implementation of the Bayesian inference method for detecting neuronal ensembles developed by G. Diana, T. Sainsbury and M. Meyer (see https://doi.org/10.1101/452557 for details).  
+The input is a text file containing a binary matrix representing the binary activity of recorded neurons arrranged by rows.
+
+.SH OPTIONS
+.TP
+.BR \-\-niter =\fIITERATIONS\fR
+Set the number of Markov Chain iteration.
+number of iterations of the Markov Chain
+.TP
+.BR \-\-trim=\fIVALUE\fR
+number of MCMC steps between recorded samples. Default 1. 
+.TP
+.BR \-\-burn_in=\fIVALUE\fR
+number of initial MCMC steps excluded
+.TP
+.BR \-\-assemblies=\fIVALUE\fR
+itial number of assemblies
+.TP
+.BR \-\-seed=\fIVALUE\fR
+random seed
+.TP
+.BR \-\-file=\fIFILE\fR
+input file in matrix format [neurons]x[times] where row \fIi\fR represents the binary activity of neuron \fIi\fR.
+.TP
+.BR \-\-min_neur=\fIVALUE\fR
+minimum number of synchronously active neurons. Default 0.
+.TP
+.BR \-\-min_act=\fIVALUE\fR
+minimum neuronal activity (row sums). Default 0.
+.TP
+.BR \-\-folder=\fIFOLDER\fR
+output folder - being created if not already existing 
+.TP
+.BR \-\-continue
+uses data from previous run stored in \fIFOLDER\fR
+.TP
+.BR \-\-verbose
+show details of the Markov Chain.
+
+
