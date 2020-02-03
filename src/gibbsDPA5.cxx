@@ -12,7 +12,6 @@
 #include<gsl/gsl_randist.h>
 #include<gsl/gsl_sf.h>
 #include<cmath>
-#include<omp.h>
 #include<sys/stat.h>
 #include<ctime>
 
