@@ -3,7 +3,6 @@
 #define ARMA_NO_DEBUG
 #include<armadillo>
 #include "../include/routines.h"
-#include "../include/crypt.h"
 #include "../include/indexed_array.h"
 #include "../include/vari.h"
 #include "../include/entropy.h"

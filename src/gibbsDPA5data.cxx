@@ -220,7 +220,6 @@ int main(int argc, char* argv[]){
 
     // output variables
     unsigned char omega_write[M*P];
-    vector<int> omega_crypt;    
     double F;
     int counter=0;
     double acc;
