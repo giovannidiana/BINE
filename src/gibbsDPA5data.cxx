@@ -105,7 +105,7 @@ int main(int argc, char* argv[]){
 			break;
 
 			case 't':
-			TRIM==stoi(optarg);
+			TRIM=stoi(optarg);
 			break;
 
 			case 'c':
